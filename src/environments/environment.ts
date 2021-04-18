@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  keycloak: {
+    url: 'http://localhost:8180/auth',
+    realm: 'SpringBootKeycloak',
+    clientId: 'motel-app',
+  }
 };
 
 /*
