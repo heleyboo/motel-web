@@ -5,6 +5,7 @@ import { District } from '../../../../core/http/district';
 import { Province } from '../../../../core/http/province';
 import { Category } from 'src/app/core/http/category';
 import { CategoryService } from 'src/app/core/services/category.service';
+import { RoomService } from 'src/app/core/services/room.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class PostRoomFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private provinceService: ProvinceService, 
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private roomService: RoomService
   ) {
 }
 
@@ -37,11 +39,16 @@ export class PostRoomFormComponent implements OnInit {
     phoneNumber: [''],
     address: [''],
     district: [''],
-    province: [''],
   });
 
   onSubmit() {
-    console.log(this.motelRoomForm.value);
+    this.roomService.createRoom(this.motelRoomForm.value).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });;
   }
 
   ngOnInit() {

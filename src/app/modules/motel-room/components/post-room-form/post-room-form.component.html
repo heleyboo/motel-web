@@ -16,7 +16,7 @@
       </div>
       <div class="form-group">
         <label for="province">Tỉnh thành</label> 
-        <select class="form-control" (change)="onChangeProvince($event)" formControlName="province">
+        <select class="form-control" (change)="onChangeProvince($event)">
           <option value="" disabled>Chọn tỉnh thành</option>
           <option *ngFor="let province of provinces" [value]="province.id">{{province.name}}</option>
        </select>
@@ -31,6 +31,10 @@
       <div class="form-group">
         <label for="address">Địa chỉ</label>
         <input class="form-control" type="text" formControlName="address" required>
+      </div>
+      <div class="form-group">
+        <label for="address">SDT liên hệ</label>
+        <input class="form-control" type="text" formControlName="phoneNumber" required>
       </div>
       <div class="form-group">
         <label for="address">Tiêu đề</label>
