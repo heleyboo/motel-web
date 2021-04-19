@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { environment } from 'src/environments/environment';
-import { PostRoomComponent } from './post-room/post-room.component';
-import { MotelRoomFormComponent } from './post-room/motel-room-form/motel-room-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MotelRoomModule } from './modules/motel-room/motel-room.module';
 
@@ -31,12 +31,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PostRoomComponent,
-    MotelRoomFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     KeycloakAngularModule,
     FormsModule,
     ReactiveFormsModule,
