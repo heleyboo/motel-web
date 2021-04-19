@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { ProvinceService } from '../../../../core/services/province.service';
 import { District } from '../../../../core/http/district';
 import { Province } from '../../../../core/http/province';
+import { Category } from 'src/app/core/http/category';
+import { CategoryService } from 'src/app/core/services/category.service';
+
 
 @Component({
   selector: 'app-post-room-form',
@@ -15,12 +18,17 @@ export class PostRoomFormComponent implements OnInit {
 
   districts: District[] = [];
 
-  // categories: Category[] = [];
+  categories: Category[] = [];
   
-  constructor(private fb: FormBuilder, private provinceService: ProvinceService) {
-  }
+  constructor(
+    private fb: FormBuilder, 
+    private provinceService: ProvinceService, 
+    private categoryService: CategoryService
+  ) {
+}
 
   motelRoomForm = this.fb.group({
+    category: [''],
     title: [''],
     description: [''],
     price: [''],
@@ -38,6 +46,7 @@ export class PostRoomFormComponent implements OnInit {
 
   ngOnInit() {
     this.provinceService.getProvinces().subscribe((res: Province[]) => this.provinces = res);
+    this.categoryService.getCategories().subscribe((res: Category[]) => this.categories = res);
   }
 
   onChangeProvince(evt: Event) {
