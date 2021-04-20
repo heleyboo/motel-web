@@ -1,0 +1,66 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">
+            Top Navigation <small>Example 3.0</small>
+          </h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Layout</a></li>
+            <li class="breadcrumb-item active">Top Navigation</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <app-flash-message *ngIf="roomCreated"></app-flash-message>
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Tin đã đăng</h3>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Tiêu đề</th>
+                    <th>Mô tả</th>
+                    <th>Ngày đăng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let room of userPostedRooms">
+                    <td>{{room.title}}</td>
+                    <td>{{room.description}}</td>
+                    <td><span class="badge bg-danger">55%</span></td>
+                  </tr>
+         
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

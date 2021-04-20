@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Room } from '../http/room';
 
@@ -16,4 +16,9 @@ export class RoomService {
     return this.httpClient.post(this.REST_API_SERVER, data);
   }
 
+  public getPostedRoomsByUser(userName: string): Observable<any> {
+    // string(primitive) | String (wrapper object)
+    let params = new HttpParams().set('userName', userName);
+    return this.httpClient.get(this.REST_API_SERVER + "/by-user", {params: params});
+  }
 }

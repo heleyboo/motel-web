@@ -10,6 +10,8 @@ import { FooterComponent } from './core/footer/footer.component';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MotelRoomModule } from './modules/motel-room/motel-room.module';
+import { UserModule } from './modules/user/user.module';
+import { FlashMessageModule } from './modules/flash-message/flash-message.module';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -31,7 +33,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     KeycloakAngularModule,
     FormsModule,
     ReactiveFormsModule,
-    MotelRoomModule
+    MotelRoomModule,
+    UserModule,
+    FlashMessageModule.forRoot()
   ],
   providers: [
     {
