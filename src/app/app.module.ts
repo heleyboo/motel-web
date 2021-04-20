@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MotelRoomModule } from './modules/motel-room/motel-room.module';
 
+
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
