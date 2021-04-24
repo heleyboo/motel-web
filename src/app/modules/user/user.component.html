@@ -37,23 +37,7 @@
               <h3 class="card-title">Tin đã đăng</h3>
             </div>
             <div class="card-body">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Tiêu đề</th>
-                    <th>Mô tả</th>
-                    <th>Ngày đăng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let room of userPostedRooms">
-                    <td>{{room.title}}</td>
-                    <td>{{room.description}}</td>
-                    <td><span class="badge bg-danger">55%</span></td>
-                  </tr>
-         
-                </tbody>
-              </table>
+              <room-list [rooms]="userPostedRooms"></room-list>
             </div>
           </div>
           <!-- /.card -->

@@ -1,0 +1,43 @@
+.room-image {
+    width: 100%;
+    height: 150px;
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+.room-title {
+    color: #222;
+    font-size: 14px!important;
+    line-height: 20px!important;
+    text-decoration: none;
+    white-space: unset;
+    margin-top: 8px;
+    height: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.room-area {
+    font-size: 14px;
+    line-height: 1.43;
+    color: #9b9b9b;
+    margin-top: 2px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.room-price {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.33;
+    color: #d0021b;
+    display: inline-block;
+    margin: 2px 4px 0 0;
+}

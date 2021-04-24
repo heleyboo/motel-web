@@ -12,6 +12,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MotelRoomModule } from './modules/motel-room/motel-room.module';
 import { UserModule } from './modules/user/user.module';
 import { FlashMessageModule } from './modules/flash-message/flash-message.module';
+import { HomeComponent } from './modules/home/home.component';
+import { HomeModule } from './modules/home/home.module';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -44,6 +46,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ReactiveFormsModule,
     MotelRoomModule,
     UserModule,
+    // HomeModule,
     FlashMessageModule.forRoot()
   ],
   providers: [

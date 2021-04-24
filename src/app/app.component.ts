@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'motel-web';
+
+  childComponentInit(data: Object) {
+    console.log(data);
+  }
 }
