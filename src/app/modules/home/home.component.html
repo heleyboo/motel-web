@@ -38,6 +38,9 @@
             <div class="card-body">
               <room-list [rooms]="rooms"></room-list>
             </div>
+            <div class="card-footer paging-center clearfix">
+                <paging [totalPages]="totalPages" (onChangePage)="reloadPagingData($event)"></paging>
+            </div>
           </div>
         </div>
       </div>

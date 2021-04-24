@@ -22,7 +22,10 @@ export class RoomService {
     return this.httpClient.get(this.REST_API_SERVER + "/by-user", {params: params});
   }
 
-  public getRooms(): Observable<any> {
-    return this.httpClient.get(this.REST_API_SERVER);
+  public getRooms(pageNum: number, pageSize: number): Observable<any> {
+    let parameters = new HttpParams()
+    .set('pageNum', pageNum.toString())
+    .set('pageSize', pageSize.toString());
+    return this.httpClient.get(this.REST_API_SERVER, {params: parameters});
   }
 }

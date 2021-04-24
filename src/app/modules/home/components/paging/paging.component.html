@@ -1,0 +1,13 @@
+<ul class="pagination pagination-md no-margin pull-right" *ngIf="totalPages>1">
+  <li class="page-item" *ngIf="currentPage>0">
+    <a (click)="changePageNumber(currentPage - 1)" class="page-link">&laquo;</a>
+  </li>
+  <li 
+  [ngClass]="currentPage==pageNum? 'page-item active' : 'page-item'" 
+  *ngFor="let item of [].constructor(totalPages); let pageNum = index">
+  <a (click)="changePageNumber(pageNum)" class="page-link">{{pageNum+1}}</a>
+</li>
+  <li class="page-item" *ngIf="currentPage<totalPages-1">
+    <a (click)="changePageNumber(currentPage+1)" class="page-link">&raquo;</a>
+  </li>
+</ul>
