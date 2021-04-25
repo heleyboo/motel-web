@@ -9,16 +9,12 @@ import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChange
 export class PagingComponent implements OnInit, OnChanges {
 
   @Input() totalPages: number = 0;
-  @Input() pageSize: number = 0;
   @Output() onChangePage = new EventEmitter<number>();
-  currentPage: number = 1;
+  currentPage: number = 0;
   
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("Change pageing");
-    
-    console.log(this.totalPages);
-    
+
   }
 
   changePageNumber(pageNumber: number) {

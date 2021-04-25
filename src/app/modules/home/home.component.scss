@@ -1,7 +1,16 @@
-.paging-center {
-    display: flex;
-    margin: 1px 0;
-    justify-content: center;
-    padding: 12px 0;
-    flex-wrap: wrap;
+.more-rooms {
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: none;
+    display: block;
+    width: 100%;
+    color: rgb(56, 105, 159);
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 20px;
+    margin: 0px auto;
+    text-align: center;
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID } from '@angular/core';
+import { PAGING } from 'src/app/configs/app_config';
 import { Page } from 'src/app/core/http/response/page';
 import { RoomResponse } from 'src/app/core/http/response/room.response';
 import { RoomService } from 'src/app/core/services/room.service';
@@ -12,15 +13,11 @@ export class HomeComponent implements OnInit {
 
   rooms: RoomResponse[] = [];
   userRooms: RoomResponse[] = [];
-  pageSize: number = 6;
+  pageSize: number = PAGING.HOME_PAGE_SIZE;
   defaultPageNum: number = 0;
-  totalPages: number = 0;
+  remainingRooms: number = 0;
 
   constructor(private roomService: RoomService) { }
-
-  reloadPagingData(pageNumber: number) {
-    this.getRooms(pageNumber, this.pageSize);
-  }
 
   ngOnInit() {
     this.getRooms(this.defaultPageNum, this.pageSize);
@@ -30,10 +27,7 @@ export class HomeComponent implements OnInit {
     this.roomService.getRooms(pageNum, pageSize).subscribe((res: Page) => {
       if (res.content) {
         this.rooms = res.content;
-      }
-      if (res.totalPages) {
-        console.log(res.totalPages);
-        this.totalPages = this.totalPages;
+        this.remainingRooms = res.totalElements - this.pageSize;
       }
     });
   }
