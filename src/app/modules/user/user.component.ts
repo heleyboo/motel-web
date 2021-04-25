@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.roomService.getPostedRoomsByUser('user1').subscribe((res: RoomResponse[]) => {
+    this.roomService.getPostedRoomsByUser('binh050598@gmail.com').subscribe((res: RoomResponse[]) => {
       this.userPostedRooms = res;
       console.log(this.userPostedRooms);
     });

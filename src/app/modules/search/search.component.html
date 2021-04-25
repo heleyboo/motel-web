@@ -1,3 +1,57 @@
-<p>
-  search works!
-</p>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">
+            Top Navigation <small>Example 3.0</small>
+          </h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Layout</a></li>
+            <li class="breadcrumb-item active">Top Navigation</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-default">
+            <div class="card-header">
+              <h3 class="card-title">Bất động sản </h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-8">
+                  <room-list [rooms] = "rooms" [layoutColumns]=4></room-list>
+                </div>
+                <div class="col-sm-4"><p>Tin tức</p></div>
+              </div>
+            </div>
+            <div class="card-footer paging-center clearfix">
+                <!-- <paging [totalPages]="totalPages" (onChangePage)="reloadPagingData($event)"></paging> -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

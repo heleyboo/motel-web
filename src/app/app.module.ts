@@ -14,6 +14,7 @@ import { UserModule } from './modules/user/user.module';
 import { FlashMessageModule } from './modules/flash-message/flash-message.module';
 import { HomeComponent } from './modules/home/home.component';
 import { HomeModule } from './modules/home/home.module';
+import { SearchModule } from './modules/search/search.module';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -46,7 +47,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ReactiveFormsModule,
     MotelRoomModule,
     UserModule,
-    // HomeModule,
+    HomeModule,
+    SearchModule,
     FlashMessageModule.forRoot()
   ],
   providers: [
