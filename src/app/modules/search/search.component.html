@@ -31,23 +31,24 @@
   <div class="content">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <div class="card card-default">
             <div class="card-header">
               <h3 class="card-title">Bất động sản </h3>
+              <i (click)="vertical=!vertical" [ngClass]="!vertical ? 'fas fa-th float-right' : 'fas fa-list float-right'"></i>
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-sm-8">
-                  <room-list [rooms] = "rooms" [layoutColumns]=4></room-list>
-                </div>
-                <div class="col-sm-4"><p>Tin tức</p></div>
+                  <room-list [rooms] = "rooms" [layoutColumns]=4 [vertical]="vertical"></room-list>
               </div>
             </div>
             <div class="card-footer paging-center clearfix">
-                <!-- <paging [totalPages]="totalPages" (onChangePage)="reloadPagingData($event)"></paging> -->
-              </div>
+                <paging [totalPages]="totalPages" (onChangePage)="reloadPagingData($event)"></paging>
+            </div>
           </div>
+        </div>
+        <div class="col-md-4">
+          Tin tuc
         </div>
       </div>
     </div>

@@ -25,3 +25,9 @@ html {
   padding: 12px 0;
   flex-wrap: wrap;
 }
+
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 960px !important;
+  }
+}

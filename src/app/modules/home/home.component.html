@@ -39,7 +39,7 @@
               <room-list [rooms]="rooms" [layoutColumns]=6></room-list>
             </div>
             <div class="card-footer paging-center clearfix">
-                <!-- <paging [totalPages]="totalPages" (onChangePage)="reloadPagingData($event)"></paging> -->
+                
                 <a [routerLink]="['/thue-phong-tro']" class="more-rooms" *ngIf="remainingRooms>0">Xem thêm {{remainingRooms}} tin khác</a>
               </div>
           </div>

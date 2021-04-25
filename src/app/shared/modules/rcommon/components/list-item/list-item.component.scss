@@ -1,8 +1,15 @@
 .room-image {
     width: 100%;
-    height: 150px;
     margin-top: 5px;
     border-radius: 2px;
+}
+
+.room-image-grid {
+    height: 150px;
+}
+
+.room-image-vertical {
+    height: 100px;
 }
 
 .room-title {

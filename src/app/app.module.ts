@@ -16,7 +16,6 @@ import { HomeComponent } from './modules/home/home.component';
 import { HomeModule } from './modules/home/home.module';
 import { SearchModule } from './modules/search/search.module';
 
-
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({

@@ -12,13 +12,17 @@ import { RoomService } from 'src/app/core/services/room.service';
 export class SearchComponent implements OnInit {
 
   rooms: RoomResponse[] = [];
+  totalPages: number = 0;
   userRooms: RoomResponse[] = [];
   pageSize: number = PAGING.PAGE_SIZE_SEARCH;
   defaultPageNum: number = 0;
-  remainingRooms: number = 0;
-
+  vertical: boolean = false;
 
   constructor(private roomService: RoomService) { }
+
+  reloadPagingData(pageNum: number) {
+    this.getRooms(pageNum, this.pageSize);
+  }
 
   ngOnInit() {
     this.getRooms(this.defaultPageNum, this.pageSize);
@@ -27,7 +31,7 @@ export class SearchComponent implements OnInit {
     this.roomService.getRooms(pageNum, pageSize).subscribe((res: Page) => {
       if (res.content) {
         this.rooms = res.content;
-        this.remainingRooms = res.totalElements - this.pageSize;
+        this.totalPages = res.totalPages;
       }
     });
   }
