@@ -28,7 +28,7 @@ export class RoomListComponent implements OnInit, OnChanges {
     
     if (this.vertical) {
       colClass = "col-md-12 ";
-    } else {   
+    } else {
       switch(this.layoutColumns) {
         case 2: colClass = "col-md-6 "; break;
         case 3: colClass = "col-md-4 "; break;

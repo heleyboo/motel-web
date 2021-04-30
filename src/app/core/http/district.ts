@@ -1,4 +1,7 @@
+import { Ward } from "./Ward";
+
 export interface District {
-    id: String;
+    code: String;
     name: String;
+    wards: Ward[];
 }

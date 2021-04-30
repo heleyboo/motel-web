@@ -7,6 +7,7 @@ import { Category } from 'src/app/core/http/category';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { RoomService } from 'src/app/core/services/room.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { Ward } from 'src/app/core/http/Ward';
 
 @Component({
   selector: 'app-post-room-form',
@@ -19,20 +20,26 @@ export class PostRoomFormComponent implements OnInit {
 
   districts: District[] = [];
 
+  wards: Ward[] = [];
+
   categories: Category[] = [];
+
+  images: any[] = [];
 
   formInvalid: Boolean = false;
 
   success: Boolean = false;
-  
+
+  step: number = 1;
+
   constructor(
-    private fb: FormBuilder, 
-    private provinceService: ProvinceService, 
+    private fb: FormBuilder,
+    private provinceService: ProvinceService,
     private categoryService: CategoryService,
     private roomService: RoomService,
     private router: Router
   ) {
-}
+  }
 
   motelRoomForm = this.fb.group({
     category: ['', Validators.required],
@@ -43,17 +50,18 @@ export class PostRoomFormComponent implements OnInit {
     utilities: [''],
     phoneNumber: ['', [Validators.required, Validators.pattern(/^(84|0[3|5|7|8|9])+([0-9]{8})$/)]],
     address: ['', Validators.required],
-    district: ['', Validators.required],
+    ward: ['', Validators.required],
+    images: ['', Validators.required]
   });
 
   onSubmit() {
-    if (this.motelRoomForm.valid) {   
+    if (this.motelRoomForm.valid) {
       let data = this.motelRoomForm.value;
       data['slug'] = this.createSlug(data['title']);
       this.roomService.createRoom(this.motelRoomForm.value).subscribe(
         response => {
           this.success = true;
-          const navigationExtras: NavigationExtras = {state: {roomCreated: true}};
+          const navigationExtras: NavigationExtras = { state: { roomCreated: true } };
           this.router.navigate(['/user-profile'], navigationExtras);
           console.log(response);
         },
@@ -64,7 +72,7 @@ export class PostRoomFormComponent implements OnInit {
       this.formInvalid = true;
     }
 
-    window.scroll(0,0);
+    window.scroll(0, 0);
   }
 
   get roomFormControl() {
@@ -81,13 +89,64 @@ export class PostRoomFormComponent implements OnInit {
   onChangeProvince(evt: Event) {
     let provinceId = (<HTMLInputElement>evt.target).value;
     this.setDistricts(provinceId);
+    this.wards = [];// Also reset ward list when change province
+  }
+
+  onChangeDistrict(evt: Event) {
+    let districtId = (<HTMLInputElement>evt.target).value;
+    this.setWards(districtId);
+  }
+
+  onImagesChange(event: Event) {
+    let reader = new FileReader();
+    let target = <HTMLInputElement>event.target;
+
+    if (target.files && target.files.length) {
+      for (let i=0; i<target.files.length; i++) {
+        let reader = new FileReader();
+        reader.readAsDataURL(target.files[i]); 
+        reader.onload = (_event) => { 
+          this.images.push(reader.result); 
+        }
+        this.motelRoomForm.patchValue({
+          images: this.images
+        });
+      }
+    }
+
+
+    if (target.files && target.files.length) {
+      this.motelRoomForm.patchValue({
+        images: reader.result
+      });
+    }
+  }
+
+  removeImage(index: number) {
+    this.images.splice(index, 1);
+    this.motelRoomForm.patchValue({
+      images: this.images
+    });
+    console.log(this.motelRoomForm.value);
+    
   }
 
   setDistricts(provinceId: String) {
-    let province = this.provinces.find(province => province.id == provinceId);
+    let province = this.provinces.find(province => province.code == provinceId);
     if (province && province.districts) {
       this.districts = province.districts;
     }
+  }
+
+  setWards(districtId: String) {
+    let district = this.districts.find(district => district.code == districtId);
+    if (district && district.wards) {
+      this.wards = district.wards;
+    }
+  }
+
+  onChangeStep(step: number) {
+    this.step = step;
   }
 
 
@@ -95,7 +154,7 @@ export class PostRoomFormComponent implements OnInit {
     //Đổi chữ hoa thành chữ thường
     let slug = "";
     slug = title.toLowerCase();
- 
+
     //Đổi ký tự có dấu thành không dấu
     slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
     slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');

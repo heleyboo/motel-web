@@ -1,0 +1,15 @@
+<div class="btn-group">
+  <button 
+  *ngIf="currentStep>1"
+  type="button" 
+  class="btn btn-warning" 
+  (click)="backStep()">
+  <i class="fas fa-arrow-left"></i> Quay lại
+</button>
+  <button type="button" class="btn btn-success" 
+  *ngIf="currentStep<totalSteps"
+  (click)="nextStep()">
+  Tiếp tục <i class="fas fa-arrow-right"></i>
+</button>
+  <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Đăng tin</button>
+</div>

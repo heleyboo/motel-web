@@ -1,7 +1,10 @@
 <app-flash-message *ngIf="success"></app-flash-message>
-<div class="card card-success">
+<div class="card card-default">
   <div class="card-header">
     <h3 class="card-title">Đăng tin</h3>
+    <control-buttons [ngClass]="'float-right'" [currentStep]="step" [totalSteps]=4
+      (onChangeStep)="onChangeStep($event)">
+    </control-buttons>
   </div>
   <!-- /.card-header -->
   <!-- form start -->
@@ -10,89 +13,120 @@
       <div class="callout callout-danger" *ngIf="formInvalid">
         <p>Vui lòng nhập đầy đủ thông tin</p>
       </div>
-      <div class="form-group">
-        <label for="category">Chọn danh mục</label>
-        <select class="form-control" formControlName="category">
-          <option value="" disabled>Chọn danh mục</option>
-          <option *ngFor="let category of categories" [value]="category.code">{{category.name}}</option>
-        </select>
-        <span class="text-danger" *ngIf="roomFormControl.category.touched && roomFormControl.category.errors?.required">
-          Vui lòng chọn danh mục
-        </span>
+      <div *ngIf="step===1">
+        <div class="form-group">
+          <label for="category">Chọn danh mục</label>
+          <select class="form-control" formControlName="category">
+            <option value="" disabled>Chọn danh mục</option>
+            <option *ngFor="let category of categories" [value]="category.code">{{category.name}}</option>
+          </select>
+          <span class="text-danger"
+            *ngIf="roomFormControl.category.touched && roomFormControl.category.errors?.required">
+            Vui lòng chọn danh mục
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="province">Tỉnh thành</label>
+          <select class="form-control select2bs4" (change)="onChangeProvince($event)">
+            <option value="">Chọn tỉnh thành</option>
+            <option *ngFor="let province of provinces" [value]="province.code">{{province.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="district">Quận huyện</label>
+          <select class="form-control" (change)="onChangeDistrict($event)">
+            <option value="" disabled>Chọn quận huyện</option>
+            <option *ngFor="let district of districts" [value]="district.code">{{district.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ward">Xã/phường</label>
+          <select class="form-control" formControlName="ward">
+            <option value="" disabled>Chọn phường xã</option>
+            <option *ngFor="let ward of wards" [value]="ward.code">{{ward.name}}</option>
+          </select>
+          <span class="text-danger" *ngIf="roomFormControl.ward.touched && roomFormControl.ward.errors?.required">
+            Vui lòng chọn xã/phường
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Địa chỉ</label>
+          <input class="form-control" type="text" formControlName="address" required>
+          <span class="text-danger" *ngIf="roomFormControl.address.touched && roomFormControl.address.errors?.required">
+            Vui lòng nhập địa chỉ
+          </span>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="province">Tỉnh thành</label>
-        <select class="form-control select2bs4" (change)="onChangeProvince($event)">
-          <option value="">Chọn tỉnh thành</option>
-          <option *ngFor="let province of provinces" [value]="province.id">{{province.name}}</option>
-        </select>
+      <div *ngIf="step===2">
+        <input class="inputfile" accept="image/*" type="file" (change)="onImagesChange($event)" multiple>
+        <div class="row img-container">
+          <div class="col-md-3 img-wrapper" *ngFor="let imgUrl of images;index as i;">
+            <img class="img-preview" [src]="imgUrl" height="200">
+            <span class="close" (click)="removeImage(i)"><i class="fas fa-trash-alt"></i></span>
+          </div>
+        </div>
+        <div class="callout callout-info">
+          <p><b>Đăng tối thiểu 3 tấm hình kích thước tối thiểu 240x240</b></p>
+          <p><b>Để thuê/cho thuê nhanh hơn:</b></p>
+          <ul>
+            <li>Đăng hình mô phỏng Căn hộ/Chung cư bạn muốn thuê/cho thuê để giúp người thuê/cho thuê dễ giới thiệu</li>
+          </ul>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="district">Quận huyện</label>
-        <select class="form-control" formControlName="district">
-          <option value="" disabled>Chọn quận huyện</option>
-          <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
-        </select>
-        <span class="text-danger" *ngIf="roomFormControl.district.touched && roomFormControl.district.errors?.required">
-          Vui lòng chọn quận huyện
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">Địa chỉ</label>
-        <input class="form-control" type="text" formControlName="address" required>
-        <span class="text-danger" *ngIf="roomFormControl.address.touched && roomFormControl.address.errors?.required">
-          Vui lòng nhập địa chỉ
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">SDT liên hệ</label>
-        <input class="form-control" type="text" formControlName="phoneNumber" required>
-        <span class="text-danger"
-          *ngIf="roomFormControl.phoneNumber.touched && roomFormControl.phoneNumber.errors?.required">
-          Vui lòng nhập SĐT liên hệ
-        </span>
-        <span class="text-danger"
-          *ngIf="roomFormControl.phoneNumber.touched && roomFormControl.phoneNumber.errors?.pattern">
-          Vui lòng nhập SĐT đúng định dạng
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">Tiêu đề</label>
-        <input class="form-control" type="text" formControlName="title" required>
-        <span class="text-danger" *ngIf="roomFormControl.title.touched && roomFormControl.title.errors?.required">
-          Vui lòng nhập tiêu đề
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">Mô tả</label>
-        <textarea class="form-control" formControlName="description"></textarea>
-        <span class="text-danger"
-          *ngIf="roomFormControl.description.touched && roomFormControl.description.errors?.required">
-          Vui lòng nhập mô tả
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">Giá (VND)/1 tháng</label>
-        <input class="form-control" type="number" formControlName="price" required>
-        <span class="text-danger" *ngIf="roomFormControl.price.touched && roomFormControl.description.errors?.required">
-          Vui lòng nhập giá
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">Diện tích (mét vuông)</label>
-        <input class="form-control" type="number" formControlName="area" required>
-        <span class="text-danger" *ngIf="roomFormControl.area.touched && roomFormControl.area.errors?.required">
-          Vui lòng nhập diện tích
-        </span>
-      </div>
-      <div class="form-group">
-        <label for="address">Tiện ích</label>
-        <textarea class="form-control" formControlName="utilities"></textarea>
+      <div *ngIf="step===3">
+        <div class="form-group">
+          <label for="address">SDT liên hệ</label>
+          <input class="form-control" type="text" formControlName="phoneNumber" required>
+          <span class="text-danger"
+            *ngIf="roomFormControl.phoneNumber.touched && roomFormControl.phoneNumber.errors?.required">
+            Vui lòng nhập SĐT liên hệ
+          </span>
+          <span class="text-danger"
+            *ngIf="roomFormControl.phoneNumber.touched && roomFormControl.phoneNumber.errors?.pattern">
+            Vui lòng nhập SĐT đúng định dạng
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Tiêu đề</label>
+          <input class="form-control" type="text" formControlName="title" required>
+          <span class="text-danger" *ngIf="roomFormControl.title.touched && roomFormControl.title.errors?.required">
+            Vui lòng nhập tiêu đề
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Mô tả</label>
+          <textarea class="form-control" formControlName="description"></textarea>
+          <span class="text-danger"
+            *ngIf="roomFormControl.description.touched && roomFormControl.description.errors?.required">
+            Vui lòng nhập mô tả
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Giá (VND)/1 tháng</label>
+          <input class="form-control" type="number" formControlName="price" required>
+          <span class="text-danger"
+            *ngIf="roomFormControl.price.touched && roomFormControl.description.errors?.required">
+            Vui lòng nhập giá
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Diện tích (mét vuông)</label>
+          <input class="form-control" type="number" formControlName="area" required>
+          <span class="text-danger" *ngIf="roomFormControl.area.touched && roomFormControl.area.errors?.required">
+            Vui lòng nhập diện tích
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Tiện ích</label>
+          <textarea class="form-control" formControlName="utilities"></textarea>
+        </div>
       </div>
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-      <button type="submit" class="btn btn-success">Đăng tin</button>
+      <control-buttons [ngClass]="'float-right'" [currentStep]="step" [totalSteps]=4
+        (onChangeStep)="onChangeStep($event)">
+      </control-buttons>
     </div>
   </form>
 </div>
