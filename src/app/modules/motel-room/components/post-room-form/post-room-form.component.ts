@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { ProvinceService } from '../../../../core/services/province.service';
 import { District } from '../../../../core/http/district';
 import { Province } from '../../../../core/http/province';
@@ -8,7 +8,8 @@ import { CategoryService } from 'src/app/core/services/category.service';
 import { RoomService } from 'src/app/core/services/room.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { Ward } from 'src/app/core/http/Ward';
-
+import { CodeValue } from 'src/app/core/http/response/codevalue.response';
+import { DirectionService } from 'src/app/core/services/direction.service';
 @Component({
   selector: 'app-post-room-form',
   templateUrl: './post-room-form.component.html',
@@ -26,6 +27,8 @@ export class PostRoomFormComponent implements OnInit {
 
   images: any[] = [];
 
+  directions: CodeValue[] = [];
+
   formInvalid: Boolean = false;
 
   success: Boolean = false;
@@ -37,6 +40,7 @@ export class PostRoomFormComponent implements OnInit {
     private provinceService: ProvinceService,
     private categoryService: CategoryService,
     private roomService: RoomService,
+    private directionService: DirectionService,
     private router: Router
   ) {
   }
@@ -46,18 +50,27 @@ export class PostRoomFormComponent implements OnInit {
     title: ['', Validators.required],
     description: ['', Validators.required],
     price: ['', Validators.required],
+    depositAmount: ['', Validators.required],
     area: ['', Validators.required],
     utilities: [''],
     phoneNumber: ['', [Validators.required, Validators.pattern(/^(84|0[3|5|7|8|9])+([0-9]{8})$/)]],
     address: ['', Validators.required],
     ward: ['', Validators.required],
-    images: ['', Validators.required]
+    images: new FormControl('', [Validators.required]),
+    numOfToilets: ['', Validators.required],
+    numOfBedrooms: ['', Validators.required],
+    doorDirection: ['', Validators.required],
+    balconyDirection: ['', Validators.required],
   });
 
   onSubmit() {
+    console.log(this.motelRoomForm);
+    
     if (this.motelRoomForm.valid) {
       let data = this.motelRoomForm.value;
       data['slug'] = this.createSlug(data['title']);
+      console.log(this.motelRoomForm.value);
+      
       this.roomService.createRoom(this.motelRoomForm.value).subscribe(
         response => {
           this.success = true;
@@ -67,7 +80,7 @@ export class PostRoomFormComponent implements OnInit {
         },
         error => {
           console.log(error);
-        });;
+        });
     } else {
       this.formInvalid = true;
     }
@@ -84,6 +97,8 @@ export class PostRoomFormComponent implements OnInit {
       this.provinces = res;
     });
     this.categoryService.getCategories().subscribe((res: Category[]) => this.categories = res);
+
+    this.directionService.getDirections().subscribe((res: CodeValue[]) => this.directions  = res);
   }
 
   onChangeProvince(evt: Event) {
@@ -104,13 +119,15 @@ export class PostRoomFormComponent implements OnInit {
     if (target.files && target.files.length) {
       for (let i=0; i<target.files.length; i++) {
         let reader = new FileReader();
-        reader.readAsDataURL(target.files[i]); 
         reader.onload = (_event) => { 
-          this.images.push(reader.result); 
+          this.images.push(reader.result);
+          console.log(this.images);
+          
+          this.motelRoomForm.patchValue({
+            images: this.images
+          });
         }
-        this.motelRoomForm.patchValue({
-          images: this.images
-        });
+        reader.readAsDataURL(target.files[i]);
       }
     }
 

@@ -75,6 +75,73 @@
       </div>
       <div *ngIf="step===3">
         <div class="form-group">
+          <label for="price">Giá (VND)/1 tháng</label>
+          <input class="form-control" type="number" formControlName="price" required>
+          <span class="text-danger"
+            *ngIf="roomFormControl.price.touched && roomFormControl.price.errors?.required">
+            Vui lòng nhập giá
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="depositAmount">Số tiền cọc</label>
+          <input class="form-control" type="number" formControlName="depositAmount" required>
+          <span class="text-danger"
+            *ngIf="roomFormControl.depositAmount.touched && roomFormControl.depositAmount.errors?.required">
+            Vui lòng nhập số tiền cọc
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="address">Diện tích (mét vuông)</label>
+          <input class="form-control" type="number" formControlName="area" required>
+          <span class="text-danger" *ngIf="roomFormControl.area.touched && roomFormControl.area.errors?.required">
+            Vui lòng nhập diện tích
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="numOfBedrooms">Số phòng ngủ</label>
+          <input class="form-control" type="number" formControlName="numOfBedrooms" required>
+          <span class="text-danger" *ngIf="roomFormControl.numOfBedrooms.touched && roomFormControl.numOfBedrooms.errors?.required">
+            Vui lòng nhập số phòng ngủ
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="numOfToilets">Số toilets</label>
+          <input class="form-control" type="number" formControlName="numOfToilets" required>
+          <span class="text-danger" *ngIf="roomFormControl.numOfToilets.touched && roomFormControl.numOfToilets.errors?.required">
+            Vui lòng nhập số toilets
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="doorDirection">Chọn hướng cửa chính</label>
+          <select class="form-control" formControlName="doorDirection">
+            <option value="" disabled>Chọn hướng cửa chính</option>
+            <option *ngFor="let direction of directions" [value]="direction.code">{{direction.value}}</option>
+          </select>
+          <span class="text-danger"
+            *ngIf="roomFormControl.doorDirection.touched && roomFormControl.doorDirection.errors?.required">
+            Vui lòng hướng cửa chính
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="balconyDirection">Chọn hướng ban công</label>
+          <select class="form-control" formControlName="balconyDirection">
+            <option value="" disabled>Chọn hướng ban công</option>
+            <option *ngFor="let direction of directions" [value]="direction.code">{{direction.value}}</option>
+          </select>
+          <span class="text-danger"
+            *ngIf="roomFormControl.doorDirection.touched && roomFormControl.doorDirection.errors?.required">
+            Vui lòng hướng ban công
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Tiện ích</label>
+          <textarea class="form-control" formControlName="utilities"></textarea>
+        </div>
+      </div>
+      <div *ngIf="step===4">
+        <div class="form-group">
           <label for="address">SDT liên hệ</label>
           <input class="form-control" type="text" formControlName="phoneNumber" required>
           <span class="text-danger"
@@ -101,25 +168,7 @@
             Vui lòng nhập mô tả
           </span>
         </div>
-        <div class="form-group">
-          <label for="address">Giá (VND)/1 tháng</label>
-          <input class="form-control" type="number" formControlName="price" required>
-          <span class="text-danger"
-            *ngIf="roomFormControl.price.touched && roomFormControl.description.errors?.required">
-            Vui lòng nhập giá
-          </span>
-        </div>
-        <div class="form-group">
-          <label for="address">Diện tích (mét vuông)</label>
-          <input class="form-control" type="number" formControlName="area" required>
-          <span class="text-danger" *ngIf="roomFormControl.area.touched && roomFormControl.area.errors?.required">
-            Vui lòng nhập diện tích
-          </span>
-        </div>
-        <div class="form-group">
-          <label for="address">Tiện ích</label>
-          <textarea class="form-control" formControlName="utilities"></textarea>
-        </div>
+        
       </div>
     </div>
     <!-- /.card-body -->

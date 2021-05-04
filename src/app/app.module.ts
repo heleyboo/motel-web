@@ -15,6 +15,8 @@ import { FlashMessageModule } from './modules/flash-message/flash-message.module
 import { HomeComponent } from './modules/home/home.component';
 import { HomeModule } from './modules/home/home.module';
 import { SearchModule } from './modules/search/search.module';
+import { ExcerptPipe } from './shared/pipes/excerpt.pipe';
+import { CustomPipesModule } from './shared/pipes/custom-pipes/custom-pipes.module';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -48,7 +50,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     UserModule,
     HomeModule,
     SearchModule,
-    FlashMessageModule.forRoot()
+    FlashMessageModule.forRoot(),
+    CustomPipesModule
   ],
   providers: [
     {
