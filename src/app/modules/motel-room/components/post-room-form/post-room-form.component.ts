@@ -75,7 +75,7 @@ export class PostRoomFormComponent implements OnInit {
         response => {
           this.success = true;
           const navigationExtras: NavigationExtras = { state: { roomCreated: true } };
-          this.router.navigate(['/user-profile'], navigationExtras);
+          // this.router.navigate(['/user-profile'], navigationExtras);
           console.log(response);
         },
         error => {

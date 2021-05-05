@@ -11,6 +11,7 @@ export class ListItemComponent implements OnInit {
   @Input() room!: RoomResponse;
   @Input() layoutColumns: number = 6;
   @Input() vertical: boolean = false;
+  roomImageUrl!: String;
 
   itemClass: string = " room-item-wrapper box";
 
@@ -25,5 +26,7 @@ export class ListItemComponent implements OnInit {
       case 6: colClass = "col-md-2 "; break;
     }
     this.itemClass = colClass + this.itemClass;
+    this.roomImageUrl = this.room.images[0].url;
+    
   }
 }

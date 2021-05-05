@@ -1,6 +1,6 @@
 <div *ngIf="!vertical">
   <img class="room-image room-image-grid"
-    src="https://cdn.chotot.com/InM_oI8kvQEWdedIzts-9KU0HXIiAbI9TqsxGJaFRdE/preset:view/plain/d0afa9f373f304d74e5180460a0620be-2716508218336196293.jpg" />
+  [src]="this.roomImageUrl" />
   <div class="room-title">{{room.title.toString()}}</div>
   <span class="room-area">{{room.area}} m2 - 10PN</span>
   <span class="room-price">{{room.price}}</span>
@@ -9,7 +9,7 @@
 <div class="row" *ngIf="vertical">
   <div class="col-md-2" style="padding: 5px;">
     <img class="room-image room-image-vertical"
-    src="https://cdn.chotot.com/InM_oI8kvQEWdedIzts-9KU0HXIiAbI9TqsxGJaFRdE/preset:view/plain/d0afa9f373f304d74e5180460a0620be-2716508218336196293.jpg" />
+    [src]="this.roomImageUrl" />
   </div>
   <div class="col-md-10">
     <div class="room-title">{{room.title.toString() | excerpt }}</div>
