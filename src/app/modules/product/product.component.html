@@ -1,0 +1,66 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">
+            Top Navigation <small>Example 3.0</small>
+          </h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Layout</a></li>
+            <li class="breadcrumb-item active">Top Navigation</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Tin rao gần đây</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <img class="room-image room-image-grid"
+                 [src]="this.roomImageUrl" style="height: 70px;"/>
+                <span class="room-title">{{room.title}}</span>
+                <span class="room-price">{{room.price}}-{{room.area}}m2</span>
+                <span class="room-pathWithType">{{room.description}}</span>
+                <a href="#">
+                  <span class="room-phoneNumber">{{room.phoneNumber}}</span>
+                </a>
+                <div class="row">
+                  <div class="col-md-6">
+                    <span class="room-area">Diện tích đất:{{room.area}}m2</span>
+                    <span class="room-numOfBedrooms">Số phòng ngủ:{{room.numOfBedrooms}}</span>
+                    <span class="room-numOfToilets">Số phòng vệ sinh:{{room.numOfToilets}}</span>
+                    <span class="room-utilities">Tiện ích:{{room.utilities}}</span>
+                  </div>
+                  <div class="col-md-6">
+                    <span class="room-use-area">Diện tích sử dụng:{{room.area}}m2</span>
+                    <span class="room-doorDirection">Hướng cửa chính:{{room.doorDirection}}</span>  
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Category } from "../category";
 import { District } from "../district";
+import { Province } from "../province";
 import { RoomImage } from "./room-image";
 
 export interface RoomResponse {
@@ -22,4 +23,6 @@ export interface RoomResponse {
     district: District,
     utilities: String,
     images: RoomImage[],
+    province: Province,
+    phoneNumber: String;
 }

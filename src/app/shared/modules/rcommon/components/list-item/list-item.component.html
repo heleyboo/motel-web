@@ -1,19 +1,28 @@
 <div *ngIf="!vertical">
-  <img class="room-image room-image-grid"
-  [src]="this.roomImageUrl" />
-  <div class="room-title">{{room.title.toString()}}</div>
-  <span class="room-area">{{room.area}} m2 - 10PN</span>
-  <span class="room-price">{{room.price}}</span>
+  <a routerLink="/product-room" class="nav-link">
+    <img class="room-image room-image-grid"
+     [src]="this.roomImageUrl" />
+</a> 
+   <a routerlink="/product-room" class="nav-link">
+     <div class="room-title">{{room.title.toString()}}</div>
+   </a>
+  <span class="room-area">{{room.area}} {{room.numOfBedrooms}}</span>
+  <span class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}}</span>
 </div>
 
 <div class="row" *ngIf="vertical">
   <div class="col-md-2" style="padding: 5px;">
+    <a routerLink="/product-room" class="nav-link">
     <img class="room-image room-image-vertical"
     [src]="this.roomImageUrl" />
+  </a>
   </div>
   <div class="col-md-10">
-    <div class="room-title">{{room.title.toString() | excerpt }}</div>
-    <span class="room-area">{{room.area}} m2 - 10PN</span>
-    <span class="room-price">{{room.price}}</span>
+    <a routerLink="/product-room" class="nav-link">
+      <div class="room-title">{{room.title.toString() | slice:0:11  }}</div> 
+    </a>
+    <span class="room-area">{{room.area}}-{{room.numOfBedrooms}}</span>
+    <span class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}}</span>
+    <span class="room-provine">{{room.province}}</span>
   </div>
 </div>

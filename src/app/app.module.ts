@@ -17,6 +17,8 @@ import { HomeModule } from './modules/home/home.module';
 import { SearchModule } from './modules/search/search.module';
 import { ExcerptPipe } from './shared/pipes/excerpt.pipe';
 import { CustomPipesModule } from './shared/pipes/custom-pipes/custom-pipes.module';
+import {registerLocaleData} from '@angular/common';
+import localVi from '@angular/common/locales/vi';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -32,6 +34,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     });
 }
 
+
+registerLocaleData(localVi, 'vi-VN')
 
 @NgModule({
   declarations: [
