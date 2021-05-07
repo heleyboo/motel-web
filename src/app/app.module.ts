@@ -19,6 +19,7 @@ import { ExcerptPipe } from './shared/pipes/excerpt.pipe';
 import { CustomPipesModule } from './shared/pipes/custom-pipes/custom-pipes.module';
 import {registerLocaleData} from '@angular/common';
 import localVi from '@angular/common/locales/vi';
+import { RoomDetailModule } from './modules/room-detail/room-detail.module';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -51,6 +52,7 @@ registerLocaleData(localVi, 'vi-VN')
     FormsModule,
     ReactiveFormsModule,
     MotelRoomModule,
+    RoomDetailModule,
     UserModule,
     HomeModule,
     SearchModule,

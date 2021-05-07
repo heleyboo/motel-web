@@ -26,7 +26,9 @@ export class ListItemComponent implements OnInit {
       case 6: colClass = "col-md-2 "; break;
     }
     this.itemClass = colClass + this.itemClass;
-    this.roomImageUrl = this.room.images[0].url;
+    // this.roomImageUrl = this.room.images[0].url;
+    this.roomImageUrl = "https://cdn.chotot.com/3xqDsCOJJT4-P_xo-QreEgvC9m0ZB3eeUfu6DflKYps/preset:view/plain/178cd4181996c68b4114f56366f9e3c4-2708530669220935085.jpg";
+    
     
   }
 }

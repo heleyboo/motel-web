@@ -28,4 +28,8 @@ export class RoomService {
     .set('pageSize', pageSize.toString());
     return this.httpClient.get(this.REST_API_SERVER, {params: parameters});
   }
+
+  public getRoomById(roomId: number): Observable<any> {
+    return this.httpClient.get(`${this.REST_API_SERVER}/${roomId}`);
+  }
 }

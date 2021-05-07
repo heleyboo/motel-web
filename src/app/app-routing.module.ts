@@ -4,7 +4,7 @@ import { PostRoomComponent } from './modules/motel-room/components/post-room/pos
 import { UserComponent } from './modules/user/user.component';
 import { HomeComponent } from './modules/home/home.component';
 import { SearchComponent } from './modules/search/search.component';
-import { ProductComponent } from './modules/product/product.component';
+import { RoomDetailComponent } from './modules/room-detail/room-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'thue-phong-tro', component: SearchComponent },
   { path: 'dang-tin', component: PostRoomComponent },
   { path: 'user-profile', component: UserComponent },
-  { path: 'product-room', component: ProductComponent },
+  { path: 'room/:id', component: RoomDetailComponent },
 ];
 
 @NgModule({
