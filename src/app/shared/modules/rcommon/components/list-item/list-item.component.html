@@ -2,7 +2,7 @@
   <a routerLink="/room/{{room.id}}">
     <img class="room-image room-image-grid" [src]="this.roomImageUrl" />
     <div class="room-title">{{room.title.toString()}}</div>
-    <span class="room-area">{{room.area}} {{room.numOfBedrooms}}</span>
+    <span class="room-area">{{room.area}}m<sup>2</sup> - {{room.numOfBedrooms}} Phòng</span>
     <span class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}}</span>
   </a>
 </div>
@@ -17,7 +17,7 @@
     <a routerLink="/product-room" class="nav-link">
       <div class="room-title">{{room.title.toString() | slice:0:11 }}</div>
     </a>
-    <span class="room-area">{{room.area}}-{{room.numOfBedrooms}}</span>
+    <span class="room-area">{{room.area}}m<sup>2</sup>-{{room.numOfBedrooms}} Phòng</span>
     <span class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}}</span>
     <span class="room-provine">{{room.province}}</span>
   </div>
