@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SERVER_ADDRESS } from 'src/app/configs/app_config';
 import { RoomResponse } from 'src/app/core/http/response/room.response';
 
 @Component({
@@ -26,8 +27,11 @@ export class ListItemComponent implements OnInit {
       case 6: colClass = "col-md-2 "; break;
     }
     this.itemClass = colClass + this.itemClass;
-    // this.roomImageUrl = this.room.images[0].url;
-    this.roomImageUrl = "https://cdn.chotot.com/3xqDsCOJJT4-P_xo-QreEgvC9m0ZB3eeUfu6DflKYps/preset:view/plain/178cd4181996c68b4114f56366f9e3c4-2708530669220935085.jpg";
+    if (this.room && this.room.images && this.room.images.length > 0) {
+      this.roomImageUrl = `${SERVER_ADDRESS}/${this.room.images[0].url}`;
+    } else {
+      this.roomImageUrl = "https://media.istockphoto.com/photos/brown-two-story-all-american-home-picture-id1158713117?k=6&m=1158713117&s=612x612&w=0&h=I9MumcAjR1biBKDLG_C9XkSoGDZLAHqL0Godjgq2UEQ=";
+    }
     
     
   }
