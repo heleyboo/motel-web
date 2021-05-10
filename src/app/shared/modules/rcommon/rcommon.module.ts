@@ -5,6 +5,7 @@ import { RoomListComponent } from './components/room-list/room-list.component';
 import { PagingComponent } from './components/paging/paging.component';
 import { CustomPipesModule } from '../../pipes/custom-pipes/custom-pipes.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { BannerRoomComponent } from './components/banner-room/banner-room.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CustomPipesModule,
     AppRoutingModule
   ],
-  exports: [ListItemComponent, RoomListComponent, PagingComponent],
-  declarations: [ListItemComponent, RoomListComponent, PagingComponent]
+  exports: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent],
+  declarations: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent]
 })
 export class RcommonModule { }

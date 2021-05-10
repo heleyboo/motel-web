@@ -10,6 +10,7 @@ import { RoomService } from 'src/app/core/services/room.service';
 })
 export class UserComponent implements OnInit {
 
+  roomImageUrl!: string;
   roomCreated: Boolean = false;
   userPostedRooms: RoomResponse[] = [];
   constructor(private router: Router, private roomService: RoomService) {

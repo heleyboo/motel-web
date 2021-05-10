@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CodeValue } from 'src/app/core/http/response/codevalue.response';
 import { RoomResponse } from 'src/app/core/http/response/room.response';
+import { DirectionService } from 'src/app/core/services/direction.service';
 import { RoomService } from 'src/app/core/services/room.service';
 
 @Component({
@@ -10,15 +12,22 @@ import { RoomService } from 'src/app/core/services/room.service';
 })
 export class RoomDetailComponent implements OnInit {
 
+  detailRoom: RoomResponse[] = [];
   room!: RoomResponse;
   roomImageUrl!: string;
+  vertical: boolean = false;
+  directions: CodeValue[] = [];
+
+
   constructor(
     private roomService: RoomService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private directionService: DirectionService
     ) { }
 
   ngOnInit() {
     this.getRoom();
+    this.directionService.getDirections().subscribe((res: CodeValue[]) => this.directions  = res);
   }
 
   getRoom(): void {
