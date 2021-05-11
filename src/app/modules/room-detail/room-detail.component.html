@@ -6,49 +6,58 @@
     <!-- /.container-fluid -->
   </div>
 
-<div class="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">
-              <span class="room-title">{{room.title.toString()|titlecase}}</span>
-            </h3>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-8">
-                <ul class="list-group">
-                  
-                  <img class="room-image room-image-grid" [src]="this.roomImageUrl" style="height: 500px; width: auto;"/>
-                  <li class="room-title">{{room.title.toString()|titlecase}}</li>
-                  <li class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}} - {{room.area}}m<sup>2</sup></li>
-                  <li class="room-pathWithType">{{room.description}}</li>
-                  <a href="#">
-                    <span class="room-phoneNumber">Nhấn để hiển thị số điện thoại: {{room.phoneNumber}}</span>
-                  </a>
-                </ul>
-                <div class="row">
-                  <div class="col-md-6">
-                    <ul>
-                      <li class="room-area"><img class="img" src="../../../assets/img/size.png" alt=""> Diện tích đất: {{room.area}}m<sup>2</sup></li>
-                      <li class="room-numOfBedrooms"><img class="img" src="../../../assets/img/numOfBedrooms.png"> Số phòng ngủ: {{room.numOfBedrooms}} Phòng</li>
-                      <li class="room-numOfToilets"><img class="img" src="../../../assets/img/toilets.png" alt=""> Số phòng vệ sinh: {{room.numOfToilets}} Phòng</li>
-                      <li class="room-utilities"><img class="img" src="../../../assets/img/utilities.png" alt=""> Tiện ích: {{room.utilities}}</li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <ul class="list-group">
-                      <li class="room-use-area"><img class="img" src="../../../assets/img/living_size.png" alt=""> Diện tích sử dụng: {{room.area}}m<sup>2</sup></li>
-                      <li class="room-doorDirection"><img class="img" src="../../../assets/img/direction.png" alt="" >  Hướng cửa chính: {{room.doorDirection}}</li>
-                      <li class="room-doorDirection"><img class="img" src="../../../assets/img/direction.png" alt="">  Hướng ban công: {{room.balconyDirection}}</li>    
-                    </ul>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-default">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="room-title">{{room.title.toString()|titlecase}}</span>
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <ul class="list-group">
+
+                    <img class="room-image room-image-grid" [src]="this.roomImageUrl"
+                      style="height: 500px; width: auto;" />
+                    <li class="room-title">{{room.title.toString()|titlecase}}</li>
+                    <li class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}} -
+                      {{room.area}}m<sup>2</sup></li>
+                    <li class="room-pathWithType">{{room.description}}</li>
+                    <a href="#">
+                      <span class="room-phoneNumber">Nhấn để hiển thị số điện thoại: {{room.phoneNumber}}</span>
+                    </a>
+                  </ul>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul>
+                        <li class="room-area"><img class="img" src="../../../assets/img/size.png" alt=""> Diện tích đất:
+                          {{room.area}}m<sup>2</sup></li>
+                        <li class="room-numOfBedrooms"><img class="img" src="../../../assets/img/numOfBedrooms.png"> Số
+                          phòng ngủ: {{room.numOfBedrooms}} Phòng</li>
+                        <li class="room-numOfToilets"><img class="img" src="../../../assets/img/toilets.png" alt=""> Số
+                          phòng vệ sinh: {{room.numOfToilets}} Phòng</li>
+                        <li class="room-utilities"><img class="img" src="../../../assets/img/utilities.png" alt=""> Tiện
+                          ích: {{room.utilities}}</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <ul class="list-group">
+                        <li class="room-use-area"><img class="img" src="../../../assets/img/living_size.png" alt="">
+                          Diện tích sử dụng: {{room.area}}m<sup>2</sup></li>
+                        <li class="room-doorDirection"><img class="img" src="../../../assets/img/direction.png" alt="">
+                          Hướng cửa chính: {{room.doorDirection | direction}}</li>
+                        <li class="room-doorDirection"><img class="img" src="../../../assets/img/direction.png" alt="">
+                          Hướng ban công: {{room.balconyDirection | direction}}</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="row">
+                <div class="col-md-4">
+                  <div class="row">
                     <div class="col-md-3">
                       <img class="img-user" src="../../../assets/img/user4-128x128.jpg" alt="">
                     </div>
@@ -60,24 +69,24 @@
 
                     </div>
                     <div class="col-md-6"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div class="content">
-  <div class="container">
-    <div class="row">
-      <div class="card-body">
-          <div class="row"> 
-            <room-list [rooms] = "detailRoom" [layoutColumns]=6></room-list>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-default">
+            <div class="card-header">
+              <h3 class="card-title">Phòng trọ liên quan</h3>
+            </div>
+            <div class="card-body">
+              <room-list [rooms]="relatedRooms" [layoutColumns]=6></room-list>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
