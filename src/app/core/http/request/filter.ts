@@ -3,4 +3,12 @@ export interface Filter {
     maxPrice: string;
     minArea: string;
     maxArea: string;
+    numOfBedrooms: string;
+    numOfToilets: string;
+    wardCode: string;
+    districtCode: string;
+    provinceCode: string;
+    doorDirection: string;
+    bacolyDirection: string;
+    category: string;
 }

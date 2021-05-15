@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SERVER_ADDRESS } from 'src/app/configs/app_config';
 import { CodeValue } from 'src/app/core/http/response/codevalue.response';
 import { Page } from 'src/app/core/http/response/page';
 import { RoomResponse } from 'src/app/core/http/response/room.response';
@@ -18,6 +19,7 @@ export class RoomDetailComponent implements OnInit {
   roomImageUrl!: string;
   vertical: boolean = false;
   directions: CodeValue[] = [];
+  @Input() rooms!: RoomResponse;
 
 
   constructor(
@@ -30,6 +32,9 @@ export class RoomDetailComponent implements OnInit {
     this.getRoom();
     this.getDirections();
     this.getRelatedRooms();
+    if (this.rooms && this.rooms.images && this.rooms.images.length > 0) {
+      this.roomImageUrl = `${SERVER_ADDRESS}/${this.rooms.images[0].url}`;
+    } 
   }
   
   getDirections() {
@@ -39,7 +44,7 @@ export class RoomDetailComponent implements OnInit {
   getRoom(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.roomService.getRoomById(id).subscribe(room => (this.room = room));
-    this.roomImageUrl = "https://cdn.chotot.com/3xqDsCOJJT4-P_xo-QreEgvC9m0ZB3eeUfu6DflKYps/preset:view/plain/178cd4181996c68b4114f56366f9e3c4-2708530669220935085.jpg";
+    
     
   }
 

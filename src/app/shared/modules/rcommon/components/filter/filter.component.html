@@ -35,12 +35,16 @@
             <label for="maxPrice">Chọn giá lớn nhất</label>
             <select class="form-control" formControlName="maxPrice">
               <option value="999000000" disabled>Chọn giá lớn nhất</option>
-              <option value="1000000">1,000,000 VND</option>
-              <option value="2000000">2,000,000 VND</option>
               <option value="3000000">3,000,000 VND</option>
-              <option value="4000000">4,000,000 VND</option>
-              <option value="5000000">5,000,000 VND</option>
+              <option value="5000000">4,000,000 VND</option>
+              <option value="7000000">7,000,000 VND</option>
+              <option value="9000000">9,000,000 VND</option>
+              <option value="15000000">15,000,000 VND</option>
             </select>
+          </div>
+        <div class="custom-slider">
+            <label igxLabel for="minPrice">Chọn giá nhỏ nhất {{minPrice}} </label>
+            <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (valueChange)="minPriceChange($event)"></ng5-slider>
           </div>
 
           <div class="form-group">
@@ -111,21 +115,21 @@
 
           <div class="form-group">
             <label for="province">Tỉnh thành</label>
-            <select class="form-control select2bs4" (change)="onChangeProvince($event)">
+            <select class="form-control select2bs4" (change)="onChangeProvince($event)" formControlName="provinceCode">
               <option value="">Chọn tỉnh thành</option>
               <option *ngFor="let province of provinces" [value]="province.code">{{province.name}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="district">Quận huyện</label>
-            <select class="form-control" (change)="onChangeDistrict($event)">
+            <select class="form-control" (change)="onChangeDistrict($event)" formControlName="districtCode">
               <option value="" disabled>Chọn quận huyện</option>
               <option *ngFor="let district of districts" [value]="district.code">{{district.name}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="ward">Xã/phường</label>
-            <select class="form-control" formControlName="ward">
+            <select class="form-control" formControlName="wardCode">
               <option value="" disabled>Chọn phường xã</option>
               <option *ngFor="let ward of wards" [value]="ward.code">{{ward.name}}</option>
             </select>
@@ -134,7 +138,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" (click)="onApplyFilter()"><span>Áp dụng</span></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onApplyFilter()">Áp dụng</button>
       </div>
     </div>
   </div>

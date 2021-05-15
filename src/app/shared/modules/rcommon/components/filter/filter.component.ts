@@ -12,6 +12,8 @@ import { CategoryService } from 'src/app/core/services/category.service';
 import { DirectionService } from 'src/app/core/services/direction.service';
 import { ProvinceService } from 'src/app/core/services/province.service';
 import { RoomService } from 'src/app/core/services/room.service';
+import { LabelType, Options } from 'ng5-slider';
+
 
 
 @Component({
@@ -37,7 +39,9 @@ export class FilterComponent implements OnInit {
 
   categories: Category[] = []; 
 
-  directions: CodeValue[] = []; 
+  directions: CodeValue[] = [];
+
+  minPrice: number = 0;
 
   constructor(private roomService: RoomService,
     private provinceService: ProvinceService,
@@ -49,7 +53,15 @@ export class FilterComponent implements OnInit {
       minPrice: ['0', Validators.required],
       maxPrice: ['1000000000', Validators.required],
       minArea: ['0', Validators.required],
-      maxArea: ['1000000000', Validators.required]
+      maxArea: ['1000000000', Validators.required],
+      numOfBedrooms: ['0', Validators.required],
+      numOfToilets: ['0', Validators.required],
+      wardCode: ['', Validators.required],
+      districtCode: ['', Validators.required],
+      provinceCode: ['', Validators.required],
+      category: ['', Validators.required],
+      doorDirection: ['', Validators.required],
+      bacolyDirection: ['', Validators.required],
     });
 
   ngOnInit() {
@@ -97,7 +109,21 @@ export class FilterComponent implements OnInit {
   }
 
   onApplyFilter() {
+    this.filterForm.patchValue({
+      minPrice: this.minPrice
+    });
     this.onFilterChange.emit(this.filterForm.value);
   }
 
+  minPriceChange(value: any) {
+    this.minPrice = value;
+  }
+
+  value: number = 1000000;
+  highValue: number = 100000000;
+  options: Options = {
+    floor: 0,
+    ceil: 100000000,
+    step: 1000000
+  };
 }

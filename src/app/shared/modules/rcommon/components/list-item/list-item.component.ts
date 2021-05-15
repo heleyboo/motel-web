@@ -29,9 +29,7 @@ export class ListItemComponent implements OnInit {
     this.itemClass = colClass + this.itemClass;
     if (this.room && this.room.images && this.room.images.length > 0) {
       this.roomImageUrl = `${SERVER_ADDRESS}/${this.room.images[0].url}`;
-    } else {
-      this.roomImageUrl = "https://media.istockphoto.com/photos/brown-two-story-all-american-home-picture-id1158713117?k=6&m=1158713117&s=612x612&w=0&h=I9MumcAjR1biBKDLG_C9XkSoGDZLAHqL0Godjgq2UEQ=";
-    }
+    } 
     
     
   }

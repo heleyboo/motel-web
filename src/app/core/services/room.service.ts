@@ -38,7 +38,14 @@ export class RoomService {
     .set('maxPrice', params.maxPrice)
     .set('minArea', params.minArea)
     .set('maxArea', params.maxArea)
+    .set('wardCode', params.wardCode)
+    .set('districtCode', params.districtCode)
+    .set('provinceCode', params.provinceCode)
+    .set('doorDirection', params.doorDirection)
+    .set('balconyDirection', params.bacolyDirection)
+    .set('category', params.category)
     ;
+
     return this.httpClient.get(this.REST_API_SERVER, {params: parameters});
   }
 
