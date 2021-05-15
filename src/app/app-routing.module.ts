@@ -5,6 +5,7 @@ import { UserComponent } from './modules/user/user.component';
 import { HomeComponent } from './modules/home/home.component';
 import { SearchComponent } from './modules/search/search.component';
 import { RoomDetailComponent } from './modules/room-detail/room-detail.component';
+import { RegistrationComponent } from './modules/registration/registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'dang-tin', component: PostRoomComponent },
   { path: 'user-profile', component: UserComponent },
   { path: 'room/:id', component: RoomDetailComponent },
+  { path: 'registration', component: RegistrationComponent },
 ];
 
 @NgModule({

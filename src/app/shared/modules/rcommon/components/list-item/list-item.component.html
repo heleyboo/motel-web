@@ -9,16 +9,16 @@
 
 <div class="row" *ngIf="vertical">
   <div class="col-md-2" style="padding: 5px;">
-    <a routerLink="/product-room" class="nav-link">
+    <a routerLink="/room/{{room.id}}" class="nav-link">
       <img class="room-image room-image-vertical" [src]="this.roomImageUrl" />
     </a>
   </div>
   <div class="col-md-10">
-    <a routerLink="/product-room" class="nav-link">
+    <a routerLink="/room/{{room.id}}" class="nav-link">
       <div class="room-title">{{room.title.toString() | slice:0:11 }}</div>
+      <span class="room-area">{{room.area}}m<sup>2</sup>-{{room.numOfBedrooms}} Phòng</span>
+      <span class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}}</span>
+      <span class="room-provine">{{room.province}}</span>
     </a>
-    <span class="room-area">{{room.area}}m<sup>2</sup>-{{room.numOfBedrooms}} Phòng</span>
-    <span class="room-price">{{room.price.toString() | currency:'VND':'symbol':'1.0-0':'vi-VN'}}</span>
-    <span class="room-provine">{{room.province}}</span>
   </div>
 </div>

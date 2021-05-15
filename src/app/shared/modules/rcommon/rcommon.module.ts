@@ -6,6 +6,7 @@ import { PagingComponent } from './components/paging/paging.component';
 import { CustomPipesModule } from '../../pipes/custom-pipes/custom-pipes.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BannerRoomComponent } from './components/banner-room/banner-room.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { BannerRoomComponent } from './components/banner-room/banner-room.compon
     CustomPipesModule,
     AppRoutingModule
   ],
-  exports: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent],
-  declarations: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent]
+  exports: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent, FilterComponent],
+  declarations: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent, FilterComponent]
 })
 export class RcommonModule { }
