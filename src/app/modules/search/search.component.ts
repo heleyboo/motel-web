@@ -4,6 +4,7 @@ import { PAGING } from 'src/app/configs/app_config';
 import { Category } from 'src/app/core/http/category';
 import { District } from 'src/app/core/http/district';
 import { Province } from 'src/app/core/http/province';
+import { Filter } from 'src/app/core/http/request/filter';
 import { CodeValue } from 'src/app/core/http/response/codevalue.response';
 import { Page } from 'src/app/core/http/response/page';
 import { RoomResponse } from 'src/app/core/http/response/room.response';
@@ -104,6 +105,17 @@ export class SearchComponent implements OnInit {
   
   getRooms(pageNum: number, pageSize: number) {
     this.roomService.getRooms(pageNum, pageSize).subscribe((res: Page) => {
+      if (res.content) {
+        this.rooms = res.content;
+        this.totalPages = res.totalPages;
+      }
+    });
+  }
+
+
+  filter(params: Object) {
+    console.log(params);
+    this.roomService.searchRooms(0, this.pageSize, <Filter> params).subscribe((res: Page) => {
       if (res.content) {
         this.rooms = res.content;
         this.totalPages = res.totalPages;

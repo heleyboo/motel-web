@@ -7,11 +7,14 @@ import { CustomPipesModule } from '../../pipes/custom-pipes/custom-pipes.module'
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BannerRoomComponent } from './components/banner-room/banner-room.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     CustomPipesModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule
   ],
   exports: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent, FilterComponent],

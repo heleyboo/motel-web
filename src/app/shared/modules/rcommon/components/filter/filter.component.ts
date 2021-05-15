@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PAGING } from 'src/app/configs/app_config';
 import { Category } from 'src/app/core/http/category';
@@ -20,6 +20,9 @@ import { RoomService } from 'src/app/core/services/room.service';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+
+  @Output() onFilterChange = new EventEmitter<Object>();
+
   rooms: RoomResponse[] = [];
   totalPages: number = 0;
   userRooms: RoomResponse[] = [];
@@ -42,22 +45,11 @@ export class FilterComponent implements OnInit {
     private directionService: DirectionService,
     private fb: FormBuilder) { }
 
-    motelRoomForm = this.fb.group({
-      category: ['', Validators.required],
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      price: ['', Validators.required],
-      depositAmount: ['', Validators.required],
-      area: ['', Validators.required],
-      utilities: [''],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^(84|0[3|5|7|8|9])+([0-9]{8})$/)]],
-      address: ['', Validators.required],
-      ward: ['', Validators.required],
-      images: new FormControl('', [Validators.required]),
-      numOfToilets: ['', Validators.required],
-      numOfBedrooms: ['', Validators.required],
-      doorDirection: ['', Validators.required],
-      balconyDirection: ['', Validators.required],
+    filterForm = this.fb.group({
+      minPrice: ['0', Validators.required],
+      maxPrice: ['1000000000', Validators.required],
+      minArea: ['0', Validators.required],
+      maxArea: ['1000000000', Validators.required]
     });
 
   ngOnInit() {
@@ -102,6 +94,10 @@ export class FilterComponent implements OnInit {
         this.totalPages = res.totalPages;
       }
     });
+  }
+
+  onApplyFilter() {
+    this.onFilterChange.emit(this.filterForm.value);
   }
 
 }

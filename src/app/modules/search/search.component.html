@@ -19,7 +19,7 @@
           <div class="card card-default">
             <div class="card-header">
               <h3 class="card-title">Bất động sản </h3>
-              <app-filter></app-filter>
+              <app-filter (onFilterChange)="filter($event)"></app-filter>
               <i (click)="vertical=!vertical" [ngClass]="!vertical ? 'fas fa-th float-right' : 'fas fa-list float-right'"></i>
             </div>
             <div class="card-body">

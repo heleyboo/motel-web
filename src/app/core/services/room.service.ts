@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Room } from '../http/room';
+import { Filter } from '../http/request/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,18 @@ export class RoomService {
     let parameters = new HttpParams()
     .set('pageNum', pageNum.toString())
     .set('pageSize', pageSize.toString());
+    return this.httpClient.get(this.REST_API_SERVER, {params: parameters});
+  }
+
+  public searchRooms(pageNum: number, pageSize: number, params: Filter): Observable<any> {
+    let parameters = new HttpParams()
+    .set('pageNum', pageNum.toString())
+    .set('pageSize', pageSize.toString())
+    .set('minPrice', params.minPrice)
+    .set('maxPrice', params.maxPrice)
+    .set('minArea', params.minArea)
+    .set('maxArea', params.maxArea)
+    ;
     return this.httpClient.get(this.REST_API_SERVER, {params: parameters});
   }
 
