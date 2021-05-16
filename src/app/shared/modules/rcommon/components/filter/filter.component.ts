@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PAGING } from 'src/app/configs/app_config';
 import { Category } from 'src/app/core/http/category';
@@ -25,6 +25,10 @@ export class FilterComponent implements OnInit {
 
   @Output() onFilterChange = new EventEmitter<Object>();
 
+  @Input() room: RoomResponse[] = [];
+
+  @Input() layoutColumns: number = 6;
+
   rooms: RoomResponse[] = [];
   totalPages: number = 0;
   userRooms: RoomResponse[] = [];
@@ -43,6 +47,12 @@ export class FilterComponent implements OnInit {
 
   minPrice: number = 0;
 
+  maxPrice: number = 30000000;
+
+  minArea: number = 0;
+
+  maxArea: number = 300;
+
   constructor(private roomService: RoomService,
     private provinceService: ProvinceService,
     private categoryService: CategoryService,
@@ -51,9 +61,9 @@ export class FilterComponent implements OnInit {
 
     filterForm = this.fb.group({
       minPrice: ['0', Validators.required],
-      maxPrice: ['1000000000', Validators.required],
+      maxPrice: ['30000000', Validators.required],
       minArea: ['0', Validators.required],
-      maxArea: ['1000000000', Validators.required],
+      maxArea: ['300', Validators.required],
       numOfBedrooms: ['0', Validators.required],
       numOfToilets: ['0', Validators.required],
       wardCode: ['', Validators.required],
@@ -61,7 +71,7 @@ export class FilterComponent implements OnInit {
       provinceCode: ['', Validators.required],
       category: ['', Validators.required],
       doorDirection: ['', Validators.required],
-      bacolyDirection: ['', Validators.required],
+      balconyDirection: ['', Validators.required],
     });
 
   ngOnInit() {
@@ -110,7 +120,10 @@ export class FilterComponent implements OnInit {
 
   onApplyFilter() {
     this.filterForm.patchValue({
-      minPrice: this.minPrice
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      minArea: this.minArea,
+      maxArea: this.maxArea
     });
     this.onFilterChange.emit(this.filterForm.value);
   }
@@ -119,11 +132,32 @@ export class FilterComponent implements OnInit {
     this.minPrice = value;
   }
 
+  maxPriceChange(highValue: any){
+    this.maxPrice = highValue;
+  }
+
+  minAreaChange(value1: any) {
+    this.minArea = value1;
+  }
+
+  maxAreaChange(highValue1: any){
+    this.maxArea = highValue1;
+  }
+
   value: number = 1000000;
-  highValue: number = 100000000;
+  highValue: number = 30000000;
   options: Options = {
     floor: 0,
-    ceil: 100000000,
-    step: 1000000
+    ceil: 30000000,
+    step: 1000000,
+  };
+
+
+  value1: number = 10;
+  highValue1: number = 300;
+  options1: Options = {
+    floor: 0,
+    ceil: 300,
+    step: 5,
   };
 }

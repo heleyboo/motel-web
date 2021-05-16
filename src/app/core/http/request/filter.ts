@@ -9,6 +9,6 @@ export interface Filter {
     districtCode: string;
     provinceCode: string;
     doorDirection: string;
-    bacolyDirection: string;
+    balconyDirection: string;
     category: string;
 }

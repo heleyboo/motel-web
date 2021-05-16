@@ -42,7 +42,7 @@ export class RoomService {
     .set('districtCode', params.districtCode)
     .set('provinceCode', params.provinceCode)
     .set('doorDirection', params.doorDirection)
-    .set('balconyDirection', params.bacolyDirection)
+    .set('balconyDirection', params.balconyDirection)
     .set('category', params.category)
     ;
 

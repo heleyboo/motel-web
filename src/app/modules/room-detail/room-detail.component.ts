@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SERVER_ADDRESS } from 'src/app/configs/app_config';
 import { CodeValue } from 'src/app/core/http/response/codevalue.response';
 import { Page } from 'src/app/core/http/response/page';
+import { RoomImage } from 'src/app/core/http/response/room-image';
 import { RoomResponse } from 'src/app/core/http/response/room.response';
 import { DirectionService } from 'src/app/core/services/direction.service';
 import { RoomService } from 'src/app/core/services/room.service';
@@ -15,11 +16,12 @@ import { RoomService } from 'src/app/core/services/room.service';
 export class RoomDetailComponent implements OnInit {
 
   relatedRooms: RoomResponse[] = [];
-  room!: RoomResponse;
+  @Input() room!: RoomResponse;
   roomImageUrl!: string;
   vertical: boolean = false;
   directions: CodeValue[] = [];
-  @Input() rooms!: RoomResponse;
+  images: RoomImage[] = [];
+  serverAddress: string = SERVER_ADDRESS;
 
 
   constructor(
@@ -32,9 +34,6 @@ export class RoomDetailComponent implements OnInit {
     this.getRoom();
     this.getDirections();
     this.getRelatedRooms();
-    if (this.rooms && this.rooms.images && this.rooms.images.length > 0) {
-      this.roomImageUrl = `${SERVER_ADDRESS}/${this.rooms.images[0].url}`;
-    } 
   }
   
   getDirections() {
@@ -43,7 +42,10 @@ export class RoomDetailComponent implements OnInit {
 
   getRoom(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.roomService.getRoomById(id).subscribe(room => (this.room = room));
+    this.roomService.getRoomById(id).subscribe(room => {
+      this.room = room;
+      this.images = room.images;
+    });
     
     
   }

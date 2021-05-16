@@ -9,6 +9,7 @@ import { BannerRoomComponent } from './components/banner-room/banner-room.compon
 import { FilterComponent } from './components/filter/filter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng5SliderModule } from 'ng5-slider';
+import { ImageSlideshowComponent } from './components/image-slideshow/image-slideshow.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,21 @@ import { Ng5SliderModule } from 'ng5-slider';
     Ng5SliderModule,
     AppRoutingModule
   ],
-  exports: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent, FilterComponent],
-  declarations: [ListItemComponent, RoomListComponent, PagingComponent, BannerRoomComponent, FilterComponent]
+  exports: [
+    ListItemComponent,
+    RoomListComponent,
+    PagingComponent,
+    BannerRoomComponent,
+    FilterComponent,
+    ImageSlideshowComponent
+  ],
+  declarations: [
+    ListItemComponent,
+    RoomListComponent,
+    PagingComponent,
+    BannerRoomComponent,
+    FilterComponent,
+    ImageSlideshowComponent
+  ]
 })
 export class RcommonModule { }
